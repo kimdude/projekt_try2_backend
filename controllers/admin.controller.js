@@ -3,6 +3,7 @@
 const model = require("../models/admin.model");
 const Boom = require("@hapi/boom");
 
+/* Admin routes */
 //Adding user
 exports.addUser = async function(data) {
     try {

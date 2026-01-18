@@ -52,6 +52,7 @@ const init = async() => {
 
     //Requiring routes
     require("./routes/user.routes")(server);
+    require("./routes/category.routes")(server);
     require("./routes/product.routes")(server);
     require("./routes/admin.routes")(server);
 

@@ -41,7 +41,10 @@ exports.findAll = async function() {
     try {
         const result = await client.query(`SELECT user_id, role, fname, lname, username FROM users;`);
 
-        if(result.rows.length === 0) return null;
+        //No users
+        if(result.rows.length === 0) { 
+            return null;
+        }
 
         return result.rows;
 
