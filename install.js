@@ -94,7 +94,7 @@ client.query(`
 client.query(`
     INSERT INTO users(username, fname, lname, role, password)
     VALUES
-        ('admin', 'Lena', 'Lööf', 'lagerpersonal','test123');
+        ('lagerpersonal', 'Lena', 'Lööf', 'admin','test123');
 `);
 
 client.query(`
