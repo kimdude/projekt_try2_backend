@@ -13,7 +13,7 @@ module.exports = (server) => {
             path: "/admin",
             handler: async(request, h) => {
                 const result = await controller.addUser(request.payload);
-                return h.response({ result }).code(201);
+                return h.response(result).code(201);
             },
             options: {
                 auth: {
@@ -38,7 +38,7 @@ module.exports = (server) => {
             path: "/admin",
             handler: async(request, h) => {
                 const result = await controller.findUsers();
-                return h.response({ result }).code(200);
+                return h.response(result).code(200);
             },
             options: {
                 auth: {
@@ -54,7 +54,7 @@ module.exports = (server) => {
             path: "/admin/{id}",
             handler: async(request, h) => {
                 const result = await controller.findUser(request.params.id);
-                return h.response({ result }).code(200);
+                return h.response(result).code(200);
             },
             options: {
                 auth: {
@@ -75,7 +75,7 @@ module.exports = (server) => {
             path: "/admin/{id}",
             handler: async(request, h) => {
                 const result = await controller.updateUser(request.params.id, request.payload);
-                return h.response({ result }).code(200);
+                return h.response(result).code(200);
             },
             options: {
                 auth: {

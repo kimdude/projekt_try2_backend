@@ -22,7 +22,7 @@ module.exports = (server) => {
             path: "/login",
             handler: async(request, h) => {
                 const result = await controller.loginUser(request.payload);
-                return h.response({ result }).code(200);
+                return h.response(result).code(201);
             },
             options: {
                 validate: {
@@ -39,7 +39,18 @@ module.exports = (server) => {
             method: "GET",
             path: "/user",
             handler: async(request, h) => {
-                return h.response({ message: "Welcome!" }).code(200);
+
+                //Fetching id from credentials
+                const userId = request.auth.credentials.id;
+                const result = await controller.findInfo(userId);
+
+                return h.response(result).code(200);
+            },
+            options: {
+                auth: {
+                    strategy: "jwt",
+                    scope: ["user","admin"]
+                }
             }
         },
 
@@ -48,7 +59,24 @@ module.exports = (server) => {
             method: "PUT",
             path: "/user",
             handler: async(request, h) => {
-                return h.response({ message: "Welcome!" }).code(200);
+
+                //Fetching id from credentials
+                const userId = request.auth.credentials.id;
+                const result = await controller.updateUser(userId, request.payload);
+
+                return h.response(result).code(201);
+            },
+            options: {
+                auth: {
+                    strategy: "jwt",
+                    scope: ["user","admin"]
+                },
+                validate: {
+                    payload: Joi.object({
+                        password: Joi.string().min(1).max(255).required(),
+                        newPassword: Joi.string().min(1).max(255).required(),
+                    })
+                }
             }
         },
     ]);
