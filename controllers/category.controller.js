@@ -66,7 +66,6 @@ exports.updateCategory = async(id, data) => {
 //Deleting category
 exports.deleteCategory = async(id) => {
     try {
-        console.log(id)
         return await model.delete(id);
 
     } catch(error) {
