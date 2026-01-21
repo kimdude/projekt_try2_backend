@@ -41,7 +41,8 @@ client.query(`
         lname       VARCHAR(15) NOT NULL,
         username    VARCHAR(25) UNIQUE NOT NULL,
         password    VARCHAR(255) NOT NULL,
-        added       TIMESTAMPTZ DEFAULT NOW()
+        added       TIMESTAMPTZ DEFAULT NOW(),
+        active      BOOLEAN DEFAULT true
     );
 `);
 

@@ -65,3 +65,20 @@ exports.updateUser = async function(id, data) {
     }
 }
 
+//Soft deleting user
+exports.deleteUser = async function(id) {
+    try {
+        return await model.delete(id);
+
+    } catch(error) {
+        
+        //User not found
+        if(error.cause === "User not found") {
+            throw Boom.notFound("User not found.");
+        }
+       
+        //Unexpected errors
+        throw Boom.badImplementation("A database error occurred while deleting user.");
+    }
+}
+

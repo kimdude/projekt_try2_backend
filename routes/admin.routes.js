@@ -92,6 +92,27 @@ module.exports = (server) => {
                 }
             }
         },
+
+        //Deleting user
+        {
+            method: "Delete",
+            path: "/admin/{id}",
+            handler: async(request, h) => {
+                const result = await controller.deleteUser(request.params.id);
+                return h.response(result).code(200);
+            },
+            options: {
+                auth: {
+                    strategy: "jwt",
+                    scope: ["admin"]
+                },
+                validate: {
+                    params: Joi.object({
+                        id: Joi.number().integer().min(1).required()
+                    })
+                }
+            }
+        }
         
     ]);
 }

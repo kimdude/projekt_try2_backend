@@ -13,7 +13,7 @@ exports.login = async function(data) {
         //Validating user
         const result = await client.query(`SELECT * FROM users WHERE username=$1`, [username]);
 
-        if(result.rows.length === 0) {
+        if(result.rows.length === 0 || result.rows[0].active === false) {
             throw new Error("Invalid username or password");
         }
 

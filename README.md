@@ -23,6 +23,7 @@ Följande router är endast tillgängliga för admin.
 | GET       | /admin/{id}           | Läs ut specifik användare                   |
 | POST      | /admin                | Skapa ny användare                          |
 | PUT       | /admin/{id}           | Uppdatera roll                              |
+| DELETE    | /admin/{id}           | Ta bort användare                           |
 
 För att skapa en ny användare med POST-metoden skickas objekt med följande struktur:
 ```json
