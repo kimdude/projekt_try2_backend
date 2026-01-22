@@ -54,7 +54,7 @@ exports.add = async(userId, data) => {
 //Getting specific product
 exports.find = async(id) => {
     try {
-        const result = await client.query(`SELECT * FROM products WHERE product_id=$1;`,[id]);
+        const result = await client.query(`SELECT * FROM products_details WHERE product_id=$1;`,[id]);
 
         //Validating result
         if(result.rows.length === 0) {  
