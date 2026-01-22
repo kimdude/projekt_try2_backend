@@ -83,7 +83,7 @@ client.query(`
 //View
 client.query(`
     CREATE VIEW products_details AS
-    SELECT products.product_name,  products.ean_code, products.label, products.description, products.price,  products.status,  products.amount, products.added, categories.category_name, shelves.shelf, users.fname, users.lname
+    SELECT products.product_id, products.product_name,  products.ean_code, products.label, products.description, products.price,  products.status,  products.amount, products.added, categories.category_name, shelves.shelf, users.fname, users.lname
     FROM products
     LEFT JOIN users ON users.user_id = products.user_id
     LEFT JOIN shelves ON shelves.shelf_id = products.shelf_id
