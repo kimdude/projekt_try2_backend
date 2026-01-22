@@ -39,7 +39,7 @@ exports.add = async function(data) {
 //Getting all users
 exports.findAll = async function() {
     try {
-        const result = await client.query(`SELECT user_id, role, fname, lname, username, active FROM users;`);
+        const result = await client.query(`SELECT user_id, role, fname, lname, username, active FROM users WHERE active=true;`);
 
         //No users
         if(result.rows.length === 0) { 
