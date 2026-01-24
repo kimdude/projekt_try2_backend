@@ -99,31 +99,21 @@ exports.delete = async(id) => {
     try {
 
         //Deleting products with category
-        const deletedProducts = await client.query(`DELETE FROM products WHERE category_id=$1 RETURNING product_name`, [id])
+        await client.query(`DELETE FROM products WHERE category_id=$1 RETURNING product_name`, [id])
 
         //Deleting category
         const result = await client.query(`DELETE FROM categories WHERE category_id=$1 RETURNING category_name;`, [id]);
+
 
         if(result.rows.length === 0) {
             throw new Error("Invalid category ID");
         }
 
-        const deleted = [];
-
-        //Pushing deleted products in array
-        if(deletedProducts.rows.length !== 0) {
-            deletedProducts.forEach(product => deleted.push(product));
-        }
-
-        //Displaying deleted items
-        const response = {
-            category: result.rows[0],
-            products: deleted
-        }
-
-        return response;
+        return result.rows[0]
 
     } catch(error) {
+
+        console.log(error)
         //Creating error
         const newError = new Error("DB_DELETING_CATEGORY_FAILED", { cause: error.message });
         newError.code = error.code;
